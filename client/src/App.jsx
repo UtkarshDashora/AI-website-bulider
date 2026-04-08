@@ -11,7 +11,7 @@ import Cancel from './pages/Cancel'
 import { useSelector } from 'react-redux'
 import { useGetCurrentUser } from './hooks/useGetCurrentUser'
 
-export const serverUrl = "http://localhost:5000"
+export const serverUrl = "https://ai-website-bulider1.onrender.com"
 
 function App() {
   useGetCurrentUser()
