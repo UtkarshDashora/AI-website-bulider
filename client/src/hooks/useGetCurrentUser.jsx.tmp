@@ -1,0 +1,26 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { serverUrl } from "../App";
+import { useDispatch } from "react-redux";
+import { setUser as setReduxUser } from "../redux/Userslice";
+
+export const useGetCurrentUser = () => {
+    const dispatch = useDispatch();
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const fetchUser = async () => {
+        try {
+            setLoading(true);
+            const { data } = await axios.get(`${serverUrl}/api/auth/google`, { // Or /api/user? checking auth.controller.js
+                withCredentials: true
+            });
+            // Based on server/routes/user.routes.js if it exists, or auth.controller.js
+            // Let's check routes before writing
+        } catch (err) {
+            // ...
+        }
+    };
+    // ...
+};
