@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useGetCurrentUser } from '../hooks/useGetCurrentUser';
 import axios from 'axios';
 
-const serverUrl = "http://localhost:5000";
+const serverUrl = "https://ai-website-bulider1.onrender.com";
 
 function Success() {
     const navigate = useNavigate();
