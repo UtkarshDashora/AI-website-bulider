@@ -6,7 +6,7 @@ import axios from 'axios';
 import { motion } from 'motion/react';
 import { getImageFixerScript } from '../utils/imageFixer';
 
-const serverUrl = "http://localhost:5000";
+const serverUrl = "https://ai-website-bulider1.onrender.com";
 
 function Dashboard() {
     const navigate = useNavigate();
