@@ -171,7 +171,7 @@ function Home() {
 
             
             <footer className='border-t border-white/10 py-10 text-center text-sm text-zinc-500'>
-                &copy; {new Date().getFullYear()} Genweb.ai
+                &copy; {new Date().getFullYear()} Genweb.ai Made By Utkarsh D@shora
             </footer>
 
             <LoginModel open={openlogin} onClose={() => setOpenlogin(false)} />
