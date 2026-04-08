@@ -25,7 +25,7 @@ function Generate() {
     "Finalizing high-fidelity code..."
   ];
 
-  const serverUrl = "http://localhost:5000";
+  const serverUrl = "https://ai-website-bulider1.onrender.com";
 
   const handleGenerateWebsite = async () => {
     if (!prompt.trim()) return;
