@@ -6,7 +6,7 @@ import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { updateCredits } from '../redux/Userslice';
 import VantaBackground from '../components/VantaBackground';
-
+import { serverUrl } from '../App';
 function Generate() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
