@@ -11,7 +11,7 @@ import Cancel from './pages/Cancel'
 import { useSelector } from 'react-redux'
 import { useGetCurrentUser } from './hooks/useGetCurrentUser'
 
-export const serverUrl = "https://ai-website-bulider1.onrender.com"
+export const serverUrl = import.meta.env.VITE_SERVER_URL || "https://ai-website-bulider1.onrender.com"
 
 function App() {
   useGetCurrentUser()
