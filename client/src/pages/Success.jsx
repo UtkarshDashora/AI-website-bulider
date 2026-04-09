@@ -4,6 +4,7 @@ import { CheckCircle, ArrowRight, PartyPopper } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useGetCurrentUser } from '../hooks/useGetCurrentUser';
 import axios from 'axios';
+import { serverUrl } from '../App';
 
 const serverUrl = "https://ai-website-bulider1.onrender.com";
 
