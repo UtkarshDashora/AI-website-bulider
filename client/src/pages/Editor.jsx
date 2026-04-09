@@ -6,7 +6,7 @@ import { motion } from 'motion/react';
 import { getImageFixerScript } from '../utils/imageFixer';
 import { useDispatch } from 'react-redux';
 import { updateCredits } from '../redux/Userslice';
-
+import { serverUrl } from '../App';
 const serverUrl = "https://ai-website-bulider1.onrender.com";
 
 function Editor() {
