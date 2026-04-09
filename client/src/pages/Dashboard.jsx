@@ -3,10 +3,10 @@ import { ArrowLeft, Plus, Layout, Settings, Trash2, Globe, ExternalLink, Clock, 
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from "motion/react";
+import { serverUrl } from '../App';
 import { getImageFixerScript } from '../utils/imageFixer';
 
-import { serverUrl } from '../App';
 function Dashboard() {
     const navigate = useNavigate();
     const { userData } = useSelector((state) => state.user);
