@@ -12,12 +12,34 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 const app = express()
 const port = process.env.PORT || 5000
-app.use(cors(
-    {
-        origin:"https://ai-website-bulider1-0lvn.onrender.com",
-        credentials: true
-    }
-))
+
+app.use(cors({
+    origin: (origin, callback) => {
+        const allowedOrigins = [
+            process.env.FRONTEND_URL,
+         "https://ai-website-bulider1-0lvn.onrender.com"
+        ].filter(Boolean);
+        
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        // Check if origin is allowed (with or without trailing slash)
+        const isAllowed = allowedOrigins.some(allowed => {
+            const normalizedAllowed = allowed.replace(/\/$/, "");
+            const normalizedOrigin = origin.replace(/\/$/, "");
+            return normalizedAllowed === normalizedOrigin;
+        });
+
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(cookieParser())
 app.use("/api/payment", paymentRouter); // Webhook needs to be before express.json()
 app.use(express.json())
