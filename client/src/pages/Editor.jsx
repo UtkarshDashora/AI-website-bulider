@@ -7,7 +7,7 @@ import { getImageFixerScript } from '../utils/imageFixer';
 import { useDispatch } from 'react-redux';
 import { updateCredits } from '../redux/Userslice';
 
-const serverUrl = "https://ai-website-bulider1.onrender.com";
+import { serverUrl } from '../App';
 
 function Editor() {
     const { id } = useParams();
