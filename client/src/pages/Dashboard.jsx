@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { motion } from 'motion/react';
 import { getImageFixerScript } from '../utils/imageFixer';
-import { serverUrl } from '../App';
+
 const serverUrl = "https://ai-website-bulider1.onrender.com";
 
 function Dashboard() {
