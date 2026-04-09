@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LoginModel from '../components/loginModel';
 import VantaBackground from '../components/VantaBackground';
-
+import { serverUrl } from '../App';
 const serverUrl = "https://ai-website-bulider1.onrender.com";
 
 function Pricing() {
