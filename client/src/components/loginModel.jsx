@@ -1,6 +1,4 @@
-import React from 'react';
-import { AnimatePresence, motion } from "motion/react";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, signInWithRedirect } from "firebase/auth";
 import { auth, provider } from "../firebase";
 import axios from "axios";
 import { serverUrl } from "../App";
@@ -12,32 +10,43 @@ function LoginModel({ open, onClose }) {
 
   const handleGoogleLogin = async () => {
     try {
-        const result = await signInWithPopup(auth, provider);
-        const { data } = await axios.post(`${serverUrl}/api/auth/google`, {
-            name: result.user.displayName,
-            email: result.user.email,
-            avatar: result.user.photoURL
-        }, { withCredentials: true });
+        console.log("[Auth] Attempting login. Server URL:", serverUrl);
         
-        if (data.success) {
-            dispatch(setUser(data.user));
-            onClose();
+        // Detect mobile users
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            console.log("[Auth] Mobile detected: Using Redirect flow");
+            await signInWithRedirect(auth, provider);
+        } else {
+            console.log("[Auth] Desktop detected: Using Popup flow");
+            const result = await signInWithPopup(auth, provider);
+            const { data } = await axios.post(`${serverUrl}/api/auth/google`, {
+                name: result.user.displayName,
+                email: result.user.email,
+                avatar: result.user.photoURL
+            }, { withCredentials: true });
+            
+            if (data.success) {
+                dispatch(setUser(data.user));
+                onClose();
+            }
         }
     } catch (error) {
-        console.log(error);
+        console.error("[Auth] Login error:", error);
     }
   };
 
   return (
     <AnimatePresence>
       {open && (
-        <motion.div 
+        <motion.div
           className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xl px-4'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-        > 
+        >
           <motion.div
             initial={{ scale: 0.88, opacity: 0, y: 60 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -47,7 +56,7 @@ function LoginModel({ open, onClose }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative rounded-3xl bg-[#0b0b0b] border border-white/10 shadow-[0_0_30px_120px_rgba(0,0,0,0.8)] overflow-hidden">
-              
+
               {/* Background ambient glowing blurs */}
               <motion.div
                 animate={{ opacity: [0.25, 0.4, 0.25] }}
@@ -71,38 +80,38 @@ function LoginModel({ open, onClose }) {
                 <h1 className="inline-block mb-6 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-zinc-300">
                   AI-powered website builder
                 </h1>
-                
+
                 <h2 className="text-3xl font-semibold leading-tight mb-8 space-x-2">
-                    <span>Welcome to</span>
-                    <span className='bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent'>Genweb.ai</span>
+                  <span>Welcome to</span>
+                  <span className='bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent'>Genweb.ai</span>
                 </h2>
-                
+
                 <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={handleGoogleLogin}
-                    className="group relative w-full h-12 rounded-xl bg-white text-black font-semibold shadow-xl overflow-hidden"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleGoogleLogin}
+                  className="group relative w-full h-12 rounded-xl bg-white text-black font-semibold shadow-xl overflow-hidden"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-r from-zinc-100 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative h-full flex items-center justify-center gap-3">
-                        <img src="https://i.pinimg.com/originals/68/3d/9a/683d9a1a8150ee8b29bfd25d46804605.png" alt="Google logo" className="w-5 h-5" />
-                        <span>Continue with Google</span>
-                    </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-zinc-100 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative h-full flex items-center justify-center gap-3">
+                    <img src="https://i.pinimg.com/originals/68/3d/9a/683d9a1a8150ee8b29bfd25d46804605.png" alt="Google logo" className="w-5 h-5" />
+                    <span>Continue with Google</span>
+                  </div>
                 </motion.button>
 
                 <div className='flex items-center gap-4 mt-8'>
-                    <div className='flex-1 h-px bg-white/10'/>
-                    <span className='text-xs text-zinc-500'>Secure Login</span>
-                    <div className='flex-1 h-px bg-white/10'/>
+                  <div className='flex-1 h-px bg-white/10' />
+                  <span className='text-xs text-zinc-500'>Secure Login</span>
+                  <div className='flex-1 h-px bg-white/10' />
                 </div>
 
                 <p className="text-xs text-zinc-500 leading-relaxed text-center mt-6 text-balance">
-                    By continuing, you agree to our{" "}
-                    <span className="underline cursor-pointer hover:text-zinc-300 transition-colors">Terms of Service</span>
-                    {" "}and{" "}
-                    <span className="underline cursor-pointer hover:text-zinc-300 transition-colors">Privacy Policy</span>.
+                  By continuing, you agree to our{" "}
+                  <span className="underline cursor-pointer hover:text-zinc-300 transition-colors">Terms of Service</span>
+                  {" "}and{" "}
+                  <span className="underline cursor-pointer hover:text-zinc-300 transition-colors">Privacy Policy</span>.
                 </p>
-                
+
               </div>
             </div>
           </motion.div>
