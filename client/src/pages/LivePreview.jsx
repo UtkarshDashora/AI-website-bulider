@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Loader2 } from 'lucide-react';
 import { getImageFixerScript } from '../utils/imageFixer';
 import { serverUrl } from '../App';
-const serverUrl = "https://ai-website-bulider1.onrender.com";
+
 
 function LivePreview() {
     const { id } = useParams();
