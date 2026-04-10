@@ -18,7 +18,7 @@ function Pricing() {
         {
             name: "Starter",
             price: "Free",
-            credits: "100",
+            credits: "500",
             description: "Perfect for exploring the AI's capabilities.",
             features: ["1 Full Website Generation", "Standard Image Fixer", "Basic Components", "Community Support"],
             icon: <ZapIcon className="text-blue-400" size={24} />,
