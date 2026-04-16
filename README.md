@@ -1,49 +1,46 @@
-# 🚀 AI Website Builder
+# 🚀 AI Website Builder (GenWeb.ai)
 
-An AI-powered web application that allows users to generate and design websites quickly using intelligent automation. This project simplifies website creation by combining modern frontend technologies with AI-driven features.
+An AI-powered platform that enables users to generate complete, responsive websites instantly by simply describing their idea. This project focuses on simplifying web development using intelligent automation and modern full-stack technologies.
+
+---
 
 ## 🌐 Live Demo
 🔗 https://ai-website-bulider1-0lvn.onrender.com/
 
 ## 📂 GitHub Repository
-🔗 https://github.com/UtkarshDashora/AI-website-bulider
+🔗 https://github.com/UtkarshDashora/AI-website-bulider1
 
 ---
 
 ## 🧠 Features
 
-- ✨ AI-based website generation
-- 🎨 Modern UI with responsive design
-- ⚡ Fast and dynamic frontend using React
-- 🔗 Backend API integration
-- 🧩 Modular and scalable architecture
-- 🌍 Deployable on cloud platforms
+- ✨ AI-powered website generation from user prompts  
+- ⚡ Fast and dynamic frontend with React  
+- 🔐 Google Authentication (Secure Login)  
+- 📊 User dashboard to manage generated websites  
+- 💳 Credit-based system with pricing plans  
+- 🚀 One-click deployment functionality  
+- 📱 Fully responsive modern UI  
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend:
-- ReactJS
-- HTML5
-- CSS3
-- JavaScript
+### Frontend
+- ReactJS  
+- HTML5  
+- CSS3  
+- JavaScript  
 
-### Backend:
-- Node.js
-- Express.js
+### Backend
+- Node.js  
+- Express.js  
 
-### Database:
-- MongoDB / PostgreSQL (based on implementation)
+### Database
+- MongoDB / PostgreSQL  
 
-### AI Tools:
-- OpenAI APIs / AI integrations
-
----
-
-## 📸 Screenshots
-
-> Add your project screenshots here
+### AI Integration
+- OpenAI API / AI-based generation logic  
 
 ---
 
